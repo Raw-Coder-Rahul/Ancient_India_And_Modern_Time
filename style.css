@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #2f363e;
+    background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.7)),url(images/1_hnr6Fev4fMe2JxccG39qeA.jpg);
+    /* background-image: url(images/1_hnr6Fev4fMe2JxccG39qeA.jpg); */
+}
+.year-container, .yuga-container {
+    text-align: center;
+    /* background-color: #1c1c1c; */
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.year-container h2, .yuga-container h2 {
+    font-size: 1.7em;
+    font-weight: bold;
+    color: #fee800;
+}
+
+.year-container .year, .yuga-container .yuga {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1em;
+    color: #ff2972;
+    margin: 10px;
+}
+
+#clock-container {
+    display: flex;
+    flex-direction: column; /* Stack clocks vertically */
+    align-items: center; /* Center align clocks */
+}
+
+#clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    padding-bottom: 40px;
+}
+.vedic-time {
+    display: flex;
+    flex-direction: row; /* Stack children horizontaly */
+    justify-content: center;
+    align-items: center; /* Center align children */
+    gap: 80px;
+    margin-top: 100px; /* Add space between main clock and pahara*/
+}
+
+#secDots,
+#minDots,
+#hrDots,
+#paharaDots,
+#muharataDots,
+#ghatiDots{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    rotate: 90deg;
+}
+
+#secDots::before,
+#minDots::before,
+#hrDots::before,
+#paharaDots::before,
+#muharataDots::before,
+#ghatiDots::before {
+    border-radius: 50%;
+    content: '';
+    position: absolute;
+    inset: -20px;
+    box-shadow: 
+        25px 25px 75px rgba(0, 0, 0, 0.25),
+        10px 10px 70px rgba(0, 0, 0, 0.25),
+        inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+        inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+        inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+}
+
+#secDots h2,
+#minDots h2,
+#hrDots h2,
+#paharaDots h2,
+#muharataDots h2,
+#ghatiDots h2{
+    position: absolute;
+    text-align: center;
+    transform: rotate(-90deg);
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 4em;
+    font-weight: 500;
+    color: var(--clr);
+}
+
+#secDots h2 span,
+#minDots h2 span,
+#hrDots h2 span,
+#paharaDots h2 span,
+#muharataDots h2 span,
+#ghatiDots h2 span {
+    font-family: 'Times New Roman', Times, serif;
+    position: absolute;
+    font-size: 0.75rem;
+    font-weight: 900;
+    bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+#ghatiDots h2 span{
+    position: absolute;
+    bottom: 25px;
+}
+
+#secDots b {
+    position: absolute;
+    color: #fff;
+    display: inline-flex;
+    transform: rotate(-90deg) translate(-30px, 90px);
+}
+
+#minDots .dot,
+#secDots .dot,
+#hrDots .dot,
+#paharaDots .dot,
+#muharataDots .dot,
+#ghatiDots .dot {
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 3px;
+    background: var(--clr);
+    transform-origin: 100px;
+}
+
+#hrDots .active.dot,
+#minDots .active.dot,
+#secDots .active.dot,
+#paharaDots .active.dot,
+#muharataDots .active.dot,
+#ghatiDots .active.dot{
+    background: var(--clr);
+    box-shadow: 
+        0 0 10px var(--clr),
+        0 0 20px var(--clr),
+        0 0 30px var(--clr);
+}
+
+#hrDots .active.dot ~ .dot,
+#minDots .active.dot ~ .dot,
+#secDots .active.dot ~ .dot,
+#paharaDots .active.dot ~ .dot,
+#muharataDots .active.dot ~ .dot,
+#ghatiDots .active.dot ~ .dot {
+    background: #555;
+}
+
+#minDots .dot:nth-child(5n+5),
+#secDots .dot:nth-child(5n+5),
+#muharataDots .dot:nth-child(3n+3),
+#ghatiDots .dot:nth-child(2n+2){
+    width: 20px;
+}
+
+#hrDots .dot,
+#paharaDots .dot,
+#muharataDots .dot {
+    width: 20px;
+}
+
+#hrDots .dot::before,
+#paharaDots .dot::before,
+#muharataDots .dot::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--clr);
+    box-shadow: 1.5px 9px var(--clr),
+                4px 18px var(--clr),
+                7px 27px var(--clr);
+}
+
+#hrDots .dot.active ~ .dot::before,
+#paharaDots .dot.active ~ .dot::before,
+#muharataDots .dot.active ~ .dot::before,
+#ghatiDots .dot.active ~ .dot::before{
+    background: #555;
+    box-shadow: 1.5px 9px #555,
+                4px 18px #555,
+                7px 27px #555;
+}
